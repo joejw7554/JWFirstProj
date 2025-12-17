@@ -108,6 +108,7 @@ public class Inventory
         }
 
         int remainingToRemove = amount;
+        List<Item> itemsToRemove = new List<Item>();
 
         foreach (Item item in matchingItems)
         {
@@ -121,27 +122,34 @@ public class Inventory
                     
                     if (item.CurrentStackSize == 0)
                     {
-                        items.Remove(item);
+                        itemsToRemove.Add(item);
                     }
                     
-                    return true;
+                    remainingToRemove = 0;
+                    break;
                 }
                 else
                 {
                     remainingToRemove -= stackSize;
-                    items.Remove(item);
+                    itemsToRemove.Add(item);
                 }
             }
             else
             {
-                items.Remove(item);
+                itemsToRemove.Add(item);
                 remainingToRemove--;
                 
                 if (remainingToRemove == 0)
                 {
-                    return true;
+                    break;
                 }
             }
+        }
+
+        // Remove all marked items
+        foreach (Item item in itemsToRemove)
+        {
+            items.Remove(item);
         }
 
         return remainingToRemove == 0;

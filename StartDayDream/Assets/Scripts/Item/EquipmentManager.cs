@@ -8,7 +8,8 @@ using UnityEngine;
 [Serializable]
 public class EquipmentManager
 {
-    [SerializeField] private Dictionary<EquipmentSlot, EquippableItem> equippedItems;
+    // Dictionary is not serializable in Unity, but we don't need serialization for runtime manager
+    private Dictionary<EquipmentSlot, EquippableItem> equippedItems;
     [SerializeField] private int playerLevel;
 
     public int PlayerLevel => playerLevel;
