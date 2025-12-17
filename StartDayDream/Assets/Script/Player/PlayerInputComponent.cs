@@ -1,57 +1,68 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
 public class PlayerInputComponent : MonoBehaviour
 {
-    [Header("MovementSettings")]
-    [SerializeField] private float moveSpeed = 5f;
-
-    [Header("Camera Settings")]
-    [SerializeField] private Transform cameraTransform;
-
-    private Rigidbody rb;
     private InputAction moveAction;
-    private Vector2 moveInput;
+    private InputAction runAction;
+    private InputAction attackAction;
+
+    public event Action OnAttackPressed;
+
+    public Vector2 MoveInput { get; private set; }
+    public bool IsRunning { get; private set;  }
+
+    private int speedHash;
+    private int attackHash;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        InputSetup(); //키설정
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 
-        // InputAction 생성 및 바인딩 설정
+    private void InputSetup()
+    {
         moveAction = new InputAction("Move", InputActionType.Value);
-        
-        // WASD 키 바인딩 (2D Vector Composite)
         moveAction.AddCompositeBinding("2DVector")
             .With("Up", "<Keyboard>/w")
             .With("Down", "<Keyboard>/s")
             .With("Left", "<Keyboard>/a")
             .With("Right", "<Keyboard>/d");
 
-        // InputAction 활성화
-        moveAction.Enable();
 
+        runAction = new InputAction("Run", InputActionType.Button);
+        runAction.AddBinding("<keyboard>/leftShift");
+
+
+        attackAction= new InputAction("Attack", InputActionType.Button);
+        attackAction.AddBinding("<mouse>/leftButton");
+
+
+        runAction.Enable();
+        moveAction.Enable();
+        attackAction.Enable();
     }
-    
+
     void Update()
     {
-        moveInput = moveAction.ReadValue<Vector2>();
+        MoveInput = moveAction.ReadValue<Vector2>();
+        IsRunning = runAction.IsPressed();
         
-        Vector3 cameraForward = cameraTransform.forward;
-        Vector3 cameraRight= cameraTransform.right;
-
-        cameraForward.y = 0f;
-        cameraRight.y = 0;
-        cameraForward.Normalize();
-        cameraRight.Normalize();
-
-        Vector3 moveDirection = (cameraForward * moveInput.y + cameraRight* moveInput.x).normalized;
-
-
-        transform.position += moveDirection * moveSpeed * Time.deltaTime;
+        if(attackAction.WasPressedThisFrame())
+        {
+            OnAttackPressed?.Invoke();
+        }
+        
     }
 
     void OnDestroy()
     {
+        runAction?.Dispose();
         moveAction?.Dispose();
+        attackAction?.Dispose();
+
+
     }
 }

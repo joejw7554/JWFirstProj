@@ -4037,10 +4037,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2961661658118306232}
-  - component: {fileID: 3022885440211536651}
   - component: {fileID: 7546224689090443848}
   - component: {fileID: 3915855345697891938}
   - component: {fileID: 5160986507400361297}
+  - component: {fileID: 3022885440211536651}
+  - component: {fileID: 6389584023405347219}
+  - component: {fileID: 5505983931351960732}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4066,20 +4068,6 @@ Transform:
   - {fileID: 8650006854771815532}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3022885440211536651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5278647912422326898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1cf5f95ad296dd44866358748135c89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerInputComponent
-  moveSpeed: 5
-  cameraTransform: {fileID: 0}
 --- !u!54 &7546224689090443848
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4140,7 +4128,7 @@ Animator:
   m_GameObject: {fileID: 5278647912422326898}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: e8397bfde2758f942a04edaaf7ad57ec, type: 3}
-  m_Controller: {fileID: 9100000, guid: 73311c0bca10d834db36edb49335a992, type: 2}
+  m_Controller: {fileID: 9100000, guid: b4e5fa6fee98bcb4d8812c9761fe2d50, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4152,6 +4140,46 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3022885440211536651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5278647912422326898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1cf5f95ad296dd44866358748135c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInputComponent
+--- !u!114 &6389584023405347219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5278647912422326898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 036b87d4c735eb749a0e4678832eb34b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
+--- !u!114 &5505983931351960732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5278647912422326898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07beb4c6ccaea81448a777d1f90206d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  cameraTransform: {fileID: 0}
+  walkSpeed: 5
+  runSpeed: 10
+  rotationSpeed: 10
 --- !u!1 &5358773334723590470
 GameObject:
   m_ObjectHideFlags: 0
