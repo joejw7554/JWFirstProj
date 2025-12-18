@@ -13,13 +13,15 @@ public class PlayerInputComponent : MonoBehaviour
     public Vector2 MoveInput { get; private set; }
     public bool IsRunning { get; private set;  }
 
-    private int speedHash;
-    private int attackHash;
+    void Awake()
+    {
+        InputSetup(); //키설정
+    }
 
     void Start()
     {
-        InputSetup(); //키설정
         Cursor.lockState = CursorLockMode.Locked;
+
     }
 
     private void InputSetup()

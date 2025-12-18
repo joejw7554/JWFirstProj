@@ -4164,6 +4164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 036b87d4c735eb749a0e4678832eb34b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
+  resetTimer: 2
 --- !u!114 &5505983931351960732
 MonoBehaviour:
   m_ObjectHideFlags: 0
