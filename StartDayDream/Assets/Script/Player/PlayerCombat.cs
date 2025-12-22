@@ -8,7 +8,7 @@ public class PlayerCombat : MonoBehaviour
     private int attackHash;
     private int attackCountHash;
     private int comboIndex=0;
-    private int maxComboIndex = 2;
+    private int maxComboIndex = 3;
 
 
     float timer = 0;
@@ -44,14 +44,11 @@ public class PlayerCombat : MonoBehaviour
         animator.SetTrigger(attackHash);
         animator.SetInteger(attackCountHash, comboIndex);
 
-        if (comboIndex < maxComboIndex) comboIndex++;
+        if (comboIndex <= maxComboIndex) comboIndex++;
 
         timer = 0f; // 공격 시 타이머 리셋
 
         Debug.Log($"ComboIndex: {comboIndex}");
-
-        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        Debug.Log($"현재 애니메이터 상태: {stateInfo.fullPathHash}");
 
         if (comboIndex==maxComboIndex) comboIndex = 0;
     }
@@ -64,7 +61,6 @@ public class PlayerCombat : MonoBehaviour
 
             if (timer > resetTimer)
             {
-                Debug.Log($"timer: {timer}");
                 timer = 0f;
                 comboIndex = 0;
                 Debug.Log("ComboReset");
